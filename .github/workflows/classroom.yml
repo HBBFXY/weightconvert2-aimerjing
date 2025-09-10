@@ -13,11 +13,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: 体重计算测试
-      id: ''
+    - name: testWeightConvert
+      id: testweightconvert
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: 体重计算测试
+        test-name: testWeightConvert
         setup-command: ''
         command: python test_main.py
         timeout: 5
@@ -25,6 +25,6 @@ jobs:
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        _RESULTS: "${{steps..outputs.result}}"
+        TESTWEIGHTCONVERT_RESULTS: "${{steps.testweightconvert.outputs.result}}"
       with:
-        runners: ''
+        runners: testweightconvert
